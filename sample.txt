@@ -1,0 +1,7 @@
+//This is one comment
+int main()
+{
+	/* this is a multiline comment */
+	printf("hello\n");
+	return 0;
+}
