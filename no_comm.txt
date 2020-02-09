@@ -3,14 +3,13 @@ package Compiler
 import "fmt"
 
 
-		
 
+random
 func main()
 {
-		random
+
+
 	return
 }
-
-
-
+random
 
