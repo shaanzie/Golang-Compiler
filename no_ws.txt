@@ -1,0 +1,14 @@
+package Compiler
+
+import "fmt"
+
+	try	this
+	word
+
+func main()
+{
+
+	return
+}
+
+

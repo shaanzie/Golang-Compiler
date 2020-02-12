@@ -1,0 +1,15 @@
+package Compiler
+
+import "fmt"
+
+
+
+random
+func main()
+{
+
+
+	return
+}
+random
+
