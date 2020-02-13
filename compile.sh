@@ -1,18 +1,18 @@
 echo "Compiling program"
 
-lex no_comment.l
+lex lexers/no_comment.l
 
 g++ lex.yy.c -ll
 
 ./a.out
 
-lex no_ws.l
+lex lexers/no_ws.l
 
 g++ lex.yy.c -ll
 
 ./a.out
 
-lex identifier.l
+lex lexers/identifier.l
 
 g++ lex.yy.c -ll
 
@@ -20,6 +20,12 @@ g++ lex.yy.c -ll
 
 rm no_comm.go
 
-g++ SymbolTable.cpp
+g++ lexers/SymbolTable.cpp
 
 ./a.out
+
+rm identifiers.txt
+
+rm lex.yy.c
+
+rm a.out
