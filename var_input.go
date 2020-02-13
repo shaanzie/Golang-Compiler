@@ -1,14 +1,19 @@
-package main
+package Compiler
+
 import "fmt"
 
-func main() {  
-	var c int
-	var d float 
-	var e string
-    a:=true
-    {
-		a:="hello"
-	}
+
+
+random
+func main()
+{
+	a:=10
 	b:=30
+	c:=true
+	{
+	a:="hello"
+	}
+	return
 }
+random
 
