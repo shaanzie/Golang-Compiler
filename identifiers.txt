@@ -1,4 +1,0 @@
-a,int,1,10,10
-b,int,1,11,30
-c,boolean,1,12,true
-a,string,2,14,"hello"
