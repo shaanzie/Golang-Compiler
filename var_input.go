@@ -2,8 +2,6 @@ package Compiler
 
 import "fmt"
 
-
-
 random
 func main()
 {
@@ -16,4 +14,3 @@ func main()
 	return
 }
 random
-
