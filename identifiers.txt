@@ -1,8 +1,4 @@
-c,int,1,5,0
-d,float,1,6,0
-e,string,1,7,""
-f,string,1,8,""
-a,boolean,1,10,true
-a,string,2,12,"hello"
-f,string,2,13,"try"
-b,int,1,15,30
+a,int,1,10,10
+b,int,1,11,30
+c,boolean,1,12,true
+a,string,2,14,"hello"
