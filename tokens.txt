@@ -1,0 +1,30 @@
+Token:package Type:Keyword Line No:1
+Token:main Type:Package Line No:1
+Token:import Type:Keyword Line No:2
+Token:"fmt" Type:Package Line No:2
+Token:func Type:Keyword Line No:4
+Token:main Type:Package Line No:4
+Token:( Type:LParen Line No:4
+Token:) Type:RParen Line No:4
+Token:{ Type:LBrace Line No:4
+Token:var Type:Keyword Line No:5
+Token:c Type:Identifier Line No:5
+Token:int Type:Identifier Line No:5
+Token:var Type:Keyword Line No:6
+Token:d Type:Identifier Line No:6
+Token:float Type:Identifier Line No:6
+Token:var Type:Keyword Line No:7
+Token:e Type:Identifier Line No:7
+Token:string Type:Identifier Line No:7
+Token:a Type:Identifier Line No:8
+Token:= Type:Assignment operators Line No:8
+Token:true Type:Identifier Line No:8
+Token:{ Type:LBrace Line No:9
+Token:a Type:Identifier Line No:10
+Token:= Type:Assignment operators Line No:10
+Token:hell Type:Identifier Line No:10
+Token:} Type:RBrace Line No:11
+Token:b Type:Identifier Line No:12
+Token:= Type:Assignment operators Line No:12
+Token:} Type:RBrace Line No:13
+Token:! Type:Logical operator Line No:14

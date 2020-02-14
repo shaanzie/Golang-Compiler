@@ -7,8 +7,10 @@ func main() {
 	var e string
     a:=true
     {
-		a:="hello"
+		a:="hell"
 	}
 	b:=30
 }
+!123
+
 
