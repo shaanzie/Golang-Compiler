@@ -7,9 +7,11 @@
 
 int main()
 {
-	yyin = fopen("no_comm.txt","r");
-	yyout = fopen("no_ws.txt","w");
+	yyin = fopen("no_comm.go","r");
+	yyout = fopen("var_input.go","w");
 	yylex();
+	fclose(yyin);
+	fclose(yyout);
 	return 0;	
 	
 }

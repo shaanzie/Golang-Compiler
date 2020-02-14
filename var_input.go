@@ -1,4 +1,5 @@
-package main
+package Compiler
+
 import "fmt"
 
 func main() {  
@@ -10,6 +11,11 @@ func main() {
 		a:="hell"
 	}
 	b:=30
+	c:=true
+	{
+	a:="hello"
+	}
+	return
 }
 !123
 

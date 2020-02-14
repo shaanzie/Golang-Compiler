@@ -1,6 +1,7 @@
 digit [0-9]
 letter [A-Za-z]
 %option yylineno
+%option noyywrap
 
 %{
 #include<iostream>
