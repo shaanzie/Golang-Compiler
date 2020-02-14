@@ -26,7 +26,7 @@ void error();
 "&"|"|"|"^"													{set_token(yytext,"Bitwise Operator");}
 "="|"+="|"*="|"/="|"%="|"<<="|">>="|"&="|"^="|"|="			{set_token(yytext,"Assignment operators");}
 "\n"														{}
-(.)															{;}
+(.)															{error();}
 
 %%
 int main()

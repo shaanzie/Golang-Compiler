@@ -2,14 +2,12 @@ package Compiler
 
 import "fmt"
 
-func main() {  
-	var c int
-	var d float 
-	var e string
-    a:=true
-    {
-		a:="hell"
-	}
+
+
+random
+func main()
+{
+	a:=10
 	b:=30
 	c:=true
 	{
@@ -18,5 +16,4 @@ func main() {
 	return
 }
 !123
-
 

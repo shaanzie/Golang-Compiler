@@ -17,6 +17,6 @@ func main()
 	}
 	return
 }
-random
+!123
 /*
 */
