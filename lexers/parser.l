@@ -6,9 +6,9 @@ letter [A-Za-z]
 %}
 %option yylineno
 %%
-"if"						return IF;
-"else"						return ELSE;
-"for"						return FOR;
+"if" return IF;
+"else" return ELSE;
+"for"	return FOR;
 "&&"						return AND;
 "||"						return OR;
 "<="    					return LE;
