@@ -58,9 +58,13 @@ echo "##########################################################################
 
 rm y.tab* parse no_comm.go
 
-rm identifiers.txt
+# rm identifiers.txt
+
+cat identifiers.txt
 
 rm error.txt
+
+# cat error.txt
 
 rm tokens.txt
 

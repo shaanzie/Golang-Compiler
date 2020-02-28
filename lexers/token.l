@@ -46,7 +46,7 @@ void set_token(string s,string token)
 void error()
 {
 	FILE *fp;
-	fp=fopen("error.txt","w");
-	fprintf(fp,"input.go:%d:error",yylineno);
+	fp=fopen("error.txt","w+");
+	fprintf(fp,"input.go:%d:error\n",yylineno);
 	fclose(fp);
 }

@@ -205,9 +205,14 @@ int main()
         string aux;
         vector<string> toIns;
         // cout<<check<<endl;  
+		int flag = 0;
         for(int i = 0; i <check.length(); i++)
-        {
-            if(check[i] != ',')
+        {	
+			if(check[i] == '{')
+				flag = 1;
+			if(check[i] == '}')
+				flag = 0;
+            if(check[i] != ',' && flag == 0)
             {
                 aux.push_back(check[i]);
             }
