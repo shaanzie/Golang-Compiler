@@ -8,7 +8,7 @@
 int main()
 {
 	yyin = fopen("no_comm.go","r");
-	yyout = fopen("var_input.go","w");
+	yyout = fopen("parsed_input.go","w");
 	yylex();
 	fclose(yyin);
 	fclose(yyout);

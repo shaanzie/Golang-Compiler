@@ -35,7 +35,7 @@ void set_uninitialise(string s,string type);
 int main()
 {
 	extern FILE *yyin,*yyout;
-	yyin=fopen("var_input.go","r");
+	yyin=fopen("input.go","r");
 	yyout=fopen("identifiers.txt","w");
 	yylex();
 	return 0;	

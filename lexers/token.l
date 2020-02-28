@@ -11,8 +11,8 @@ void error();
 %}
 
 %%
-"package"|"import"|"func"|"if"|"else"|"break"|"var"|"for"	{set_token(yytext,"Keyword");}
-"\"fmt\""|"main" 											{set_token(yytext,"Package");}
+"package"|"import"|"func"|"if"|"else"|"break"|"var"|"for"|"return"	{set_token(yytext,"Keyword");}
+"\"fmt\""|"main"|"return"											{set_token(yytext,"Package");}
 {letter}({letter}|{digit})* 								{set_token(yytext,"Identifier");}
 \{															{set_token(yytext,"LBrace");}
 \}															{set_token(yytext,"RBrace");}
@@ -32,7 +32,7 @@ void error();
 int main()
 {
 	extern FILE *yyin,*yyout;
-	yyin=fopen("var_input.go","r");
+	yyin=fopen("input.go","r");
 	yyout=fopen("tokens.txt","w");
 	yylex();
 	return 0;	
@@ -47,6 +47,6 @@ void error()
 {
 	FILE *fp;
 	fp=fopen("error.txt","w");
-	fprintf(fp,"var_input.go:%d:error",yylineno);
+	fprintf(fp,"input.go:%d:error",yylineno);
 	fclose(fp);
 }
