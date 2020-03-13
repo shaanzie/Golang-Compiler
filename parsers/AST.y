@@ -1,24 +1,11 @@
 %{
-#include<string>
-extern int yylineno;
-extern char* yytext;
+#include<bits/stdc++.h>
+
 using namespace std;
 
-typedef struct statement{
-    string type;
-    string parent;
-    int no_child; 
-}Statement;
-
-typedef struct BinStatement{
-    string type;
-    string parent;
-    string left_child;
-    string right_child;
-}BinStatement;
-
-void create_node(string type);
-void create_bin_node(string left,char op,string right);
+extern "C";
+extern int yylineno;
+extern char* yytext;
 
 %}
 %token FOR
@@ -41,24 +28,24 @@ void create_bin_node(string left,char op,string right);
 
 %%
 
-program: stmts {$$=create_body($1);}
+program: stmts {$$ = create_body($1);}
 ;
 
-stmts:var_decl {$$=create_node($1);}
-    |for_stmt {$$=create_node($1);}
-    |if_stmt {$$=create_node($1);}
+stmts:var_decl 
+    |for_stmt 
+    |if_stmt 
     |'{'
     |'}'
     ;
-for_stmt: FOR '('cond_for')' '{' stmts '}'
+for_stmt: FOR '('cond_for')' '{' stmts '}' {$$ = create_for_node($1, $2, $3)}
 ;
-cond_for: ID '-' NUM ';'  {$$=create_bin_node($1,'-',$2);}
-    |ID '<' NUM ';'  {$$=create_bin_node($1,'<',$2);}
-    |ID '>' NUM ';' {$$=create_bin_node($1,'>',$2);}
-    |ID "<=" NUM ';'{$$=create_bin_node($1,"<=",$2);}
-    |ID ">=" NUM ';'{$$=create_bin_node($1,">=",$2);}
-    |ID "++"      {$$=create_bin_node($1);}
-    |ID "--"      {$$=create_bin_node($1);}
+cond_for: ID '-' NUM ';'  {$$=create_relfor_node($1,'-',$2);}
+    |ID '<' NUM ';'  {$$=create_relfor_node($1,'<',$2);}
+    |ID '>' NUM ';' {$$=create_relfor_node($1,'>',$2);}
+    |ID "<=" NUM ';'{$$=create_relfor_node($1,"<=",$2);}
+    |ID ">=" NUM ';'{$$=create_relfor_node($1,">=",$2);}
+    |ID "++"      {$$=create_relfor_node($1);}
+    |ID "--"      {$$=create_relfor_node($1);}
 ;
 
 if_stmt: IF '('cond_if ')' '{' stmts '}' ;
@@ -77,20 +64,47 @@ var_decl: ID ASOP NUM  {$$=create_as_node($1,$2,$3);}
 
 %%
 #include<ctype.h>
-void create_node(string type)
+
+typedef struct fornode {
+
+    string for_key;
+    struct condnode* condition;
+    struct container* statement;
+
+}fornode;
+
+typedef struct condnode {
+    string left;
+    string right;
+    string op;
+}condnode;
+
+typedef struct container{
+    string type;
+    int level;
+    node* children[100];
+}Container;
+
+Container* head = (Container*)malloc(sizeof(Container));
+
+void create_body(string text)
 {
-    Statement node = new Statement();
-    node.type = type;
-    node.no_child += 1;
+    head->type = text;
 }
 
-void create_bin_node(string left,char op,string right)
-{
-    BinStatement node = new BinStatement();
-    node.parent = op;
-    node.left = left;
-    node.right = right;
+void create_for_node(string for_key, string cond, string statement) {
+
+    fornode* newfor = (fornode*)malloc(sizeof(fornode));
+    condnode* condition = (condnode*)malloc(sizeof(condnode));
+    container* newcont = (container*)malloc(sizeof(container));
+    
+    newfor->for_key = for_key;
+    newfor->condition = condition;
+    newfor->statement = newcont;
+    
+
 }
+
 
 int main(int argc, char *argv[])
 {
