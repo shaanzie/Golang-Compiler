@@ -21,6 +21,7 @@ void set_uninitialise(string s,string type);
 "var "{letter}({letter}|{digit})*" int"				{set_uninitialise(yytext,"int");}
 "var "{letter}({letter}|{digit})*" float"			{set_uninitialise(yytext,"float");}
 "var "{letter}({letter}|{digit})*" string"			{set_uninitialise(yytext,"string");}
+{letter}({letter}|{digit})*\:\=\{({digit}\,?)*\} 	{set_ID(yytext,"array");}
 {letter}({letter}|{digit})*\:\=({digit}*) 			{set_ID(yytext,"int");}
 {letter}({letter}|{digit})*\:\=(\"(.)*\") 			{set_ID(yytext,"string");}
 {letter}({letter}|{digit})*\:\=({digit}*\.{digit}*) {set_ID(yytext,"float");}
@@ -35,7 +36,7 @@ void set_uninitialise(string s,string type);
 int main()
 {
 	extern FILE *yyin,*yyout;
-	yyin=fopen("var_input.go","r");
+	yyin=fopen("input.go","r");
 	yyout=fopen("identifiers.txt","w");
 	yylex();
 	return 0;	
