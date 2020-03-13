@@ -1,34 +1,34 @@
 echo "Compiling program"
 
-lex lexers/no_comment.l
+# lex lexers/no_comment.l
 
-g++ lex.yy.c -ll
+# g++ lex.yy.c -ll
 
-./a.out
+# ./a.out
 
-lex lexers/no_ws.l
+# lex lexers/no_ws.l
 
-g++ lex.yy.c -ll
+# g++ lex.yy.c -ll
 
-./a.out
+# ./a.out
 
-lex lexers/token.l
+# lex lexers/token.l
 
-g++ lex.yy.c -ll
+# g++ lex.yy.c -ll
 
-./a.out
+# ./a.out
 
-echo "##########################################################################################################################"
+# echo "##########################################################################################################################"
 
-echo "\n\n\nTokens:\n"
+# echo "\n\n\nTokens:\n"
 
-cat tokens.txt
+# cat tokens.txt
 
-lex lexers/identifier.l
+# lex lexers/identifier.l
 
-g++ lex.yy.c -ll
+# g++ lex.yy.c -ll
 
-./a.out
+# ./a.out
 
 echo "##########################################################################################################################"
 
@@ -42,15 +42,15 @@ cc lex.yy.c y.tab.c -o parse -w
 
 ./parse < parsed_input.go
 
-g++ lexers/SymbolTable.cpp
+# g++ lexers/SymbolTable.cpp
 
-echo "\n"
+# echo "\n"
 
-echo "##########################################################################################################################"
+# echo "##########################################################################################################################"
 
-echo "\n\n\nSymbol Table:\n\n"
+# echo "\n\n\nSymbol Table:\n\n"
 
-./a.out
+# ./a.out
 
 
 
@@ -60,7 +60,7 @@ rm y.tab* parse no_comm.go
 
 # rm identifiers.txt
 
-cat identifiers.txt
+# cat identifiers.txt
 
 rm error.txt
 
