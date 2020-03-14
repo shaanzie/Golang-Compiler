@@ -197,7 +197,8 @@ void assign_for(container* head, vector<string> text)
     text.erase(text.end());
     newfor->text ="for";
     newfor->statements = parse_container(text);
-    head->nextfor = newfor;    
+    head->nextfor = newfor;   
+    // head->text = "for"; 
 }
 
 void assign_if(container* head, vector<string> text)
@@ -242,24 +243,27 @@ void assign_text(container* head, string text)
     newcond->right = right;
     newcond->op = ":=";
     head->nextassign = newcond;
+    // head->text = "assign";
 }
 
 void printAST(container* temp)
 {
+
+    cout<<temp->text<<endl;
     
     while(temp->next != NULL)
     {
-        cout<<temp->nextif->text<<endl;
+        cout<<temp->nextif->condition->left<<endl;
         temp = temp->next;
     }
 }
+
+container* temp = init();
 
 int main()
 {
     ifstream ip;
     ip.open("new.go", ios::in);
-
-    container* temp = init();
     container* head = temp;
     string text;
     vector<string> body;
@@ -290,27 +294,23 @@ int main()
                 cout<<head->text<<endl;
                 body.clear();
                 flag = 0;
-
-                head->next = (container*)malloc(sizeof(container));
-                head = head->next;
             }
             else
             {
                 assign_if(head, body);
+                cout<<head->text;
                 body.clear();
                 flag = 0;
-
-                head->next = (container*)malloc(sizeof(container));
-                head = head->next;
             }
         }
         else
         {   
             assign_text(head, text);
-
-            head->next = (container*)malloc(sizeof(container));
-            head = head->next;
+            cout<<head->text;
         }
+
+        head->next = (container*)malloc(sizeof(container));
+        head = head->next;
 
     }
 
