@@ -14,6 +14,7 @@ typedef struct Triples {
 }Triples;
 
 void print3AC(Triples* head);
+Triples* assign_if(vector<string>& text);
 
 Triples* assignment(string assign)
 {
@@ -139,9 +140,58 @@ Triples* assign_for(vector<string>& text)
 
     for(auto command : text)
     {
-        Triples* add = sequence(command);
-        head->next = add;
-        head = head->next;
+        int flag = 0;
+        vector<string> body;
+        if(flag != 0 && command.find("}") == string::npos)
+        {
+            body.push_back(command);
+        }
+        else if(command.find("for") != string::npos)
+        {   
+            body.push_back(command); 
+            flag = 1;
+        }
+        else if(command.find("if") != string::npos)
+        {   
+            body.push_back(command); 
+            flag = 2;
+        }
+        else if(command.find("}") != string::npos)
+        {    
+            body.push_back(command);
+            if(flag == 1)
+            {    
+                Triples* add = assign_for(body);
+                head->next = add;
+                while(head->next != NULL)
+                    head = head->next;
+                body.clear();
+                flag = 0;
+            }
+            else if(flag == 2)
+            {
+                Triples* add = assign_if(body);
+                body.clear();
+                flag = 0;
+                head->next = add;
+                while(head->next != NULL)
+                    head = head->next;
+            }
+        }
+        else if(command.find(":=") != string::npos)
+        {
+            
+            Triples* add = assignment(command);
+            head->next = add;
+            head = head->next;   
+        }
+        else
+        {
+            Triples* add = sequence(command);
+            head->next = add;
+            head = head->next;
+        }
+        
     }
 
     Triples* third = increment(inc);
@@ -170,9 +220,58 @@ Triples* assign_if(vector<string>& text)
 
     for(auto command : text)
     {
-        Triples* add = sequence(command);
-        head->next = add;
-        head = head->next;
+        int flag = 0;
+        vector<string> body;
+        if(flag != 0 && command.find("}") == string::npos)
+        {
+            body.push_back(command);
+        }
+        else if(command.find("for") != string::npos)
+        {   
+            body.push_back(command); 
+            flag = 1;
+        }
+        else if(command.find("if") != string::npos)
+        {   
+            body.push_back(command); 
+            flag = 2;
+        }
+        else if(command.find("}") != string::npos)
+        {    
+            body.push_back(command);
+            if(flag == 1)
+            {    
+                Triples* add = assign_for(body);
+                head->next = add;
+                while(head->next != NULL)
+                    head = head->next;
+                body.clear();
+                flag = 0;
+            }
+            else if(flag == 2)
+            {
+                Triples* add = assign_if(body);
+                body.clear();
+                flag = 0;
+                head->next = add;
+                while(head->next != NULL)
+                    head = head->next;
+            }
+        }
+        else if(command.find(":=") != string::npos)
+        {
+            
+            Triples* add = assignment(command);
+            head->next = add;
+            head = head->next;   
+        }
+        else
+        {
+            Triples* add = sequence(command);
+            head->next = add;
+            head = head->next;
+        }
+        
     }
     return headcopy;
 }
