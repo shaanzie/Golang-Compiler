@@ -192,7 +192,7 @@ void print3AC(Triples* head)
 int main()
 {
     ifstream ip;
-    ip.open("code.go", ios::in);
+    ip.open("generators/code.go", ios::in);
     string text;
     int flag = 0;
     vector<string> body;
