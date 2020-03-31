@@ -6,18 +6,16 @@ import "fmt"
 
 func main()
 {
-	a:=10
-	b:=30
-	c:=true
-	d:={1,2,3,4,5}
-	for(a=4;a<6;a++)
-	{
-	if(a>4)
-	{
-	b:=5
-	}
-	a:="hello"
-	}
+a:=30
+b:=50
+for(i:=0;i<4;i++)
+{
+b=b+a
+}
+if(a>b)
+{
+a=a+b
+}
 }
 
 

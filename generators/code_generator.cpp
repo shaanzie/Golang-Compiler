@@ -291,7 +291,7 @@ void print3AC(Triples* head)
 int main()
 {
     ifstream ip;
-    ip.open("generators/code.go", ios::in);
+    ip.open("parsed_input.go", ios::in);
     string text;
     int flag = 0;
     vector<string> body;
@@ -352,7 +352,10 @@ int main()
             Triples* add = assignment(text);
             head->next = add;
             head = head->next;   
+            
         }
+        else if(text.length() == 0)
+            continue;
         else
         {
             Triples* add = sequence(text);
