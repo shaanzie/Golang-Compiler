@@ -1,6 +1,0 @@
-a,int,1,11,10
-b,int,1,12,30
-c,boolean,1,13,true
-d,array,1,14,{1,2,3,4,5}
-b,int,3,19,5
-a,string,2,21,"hello"
