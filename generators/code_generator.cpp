@@ -295,8 +295,8 @@ int main()
     string text;
     int flag = 0;
     vector<string> body;
-    ofstream op;
-    op.open("gen_code.txt", ios::out);
+    // ofstream op;
+    // op.open("gen_code.txt", ios::out);
     
     Triples* head = (Triples*)malloc(sizeof(Triples));
     head->next = NULL;

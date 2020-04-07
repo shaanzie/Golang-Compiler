@@ -18,7 +18,7 @@ WS  		[ \t\v\f]
 
 [\n]				{line++;}
 "func"				{yylval.val = strdup(yytext);return T_FUNC;} 
-"Package"			{yylval.val = strdup(yytext);return T_PACKAGE;}	
+"package"			{yylval.val = strdup(yytext);return T_PACKAGE;}	
 "main"				{yylval.val = strdup(yytext);return T_MAIN;}
 "import"			{yylval.val = strdup(yytext);return T_IMPORT;} 
 "int"				{yylval.val = strdup(yytext);return T_INT;} 

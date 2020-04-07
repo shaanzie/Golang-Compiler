@@ -203,7 +203,7 @@ int main()
 	ast = (AST*)malloc(sizeof(AST));
 	ast->root = NULL;
 
-yyin = fopen("test.c","r");
+yyin = fopen("../parsed_input.go","r");
 if(!yyparse()){
 	
 	printf("\n--------------------------------------");
