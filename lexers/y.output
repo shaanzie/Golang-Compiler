@@ -1,0 +1,233 @@
+Nonterminals useless in grammar
+
+   Declaration
+   Assignment
+   ForStmt
+   IfStmt
+   Expr
+
+
+Terminals unused in grammar
+
+   FOR
+   IF
+   ELSE
+   NUM
+   ASOP
+   AND
+   OR
+   '<'
+   '>'
+   LE
+   GE
+   EQ
+   NE
+   LT
+   GT
+   ';'
+
+
+Rules useless in grammar
+
+    8 start: Declaration
+
+    9 Declaration: Assignment
+
+   10 Assignment: ID ASOP Assignment
+
+   11 ForStmt: FOR '(' Expr ';' Expr ';' Expr ')' Stmt
+   12        | FOR '(' Expr ')' CompoundStmt
+
+   13 IfStmt: IF '(' Expr ')' CompoundStmt
+
+   14 Stmt: Declaration
+   15     | Assignment
+
+   16 Expr: %empty
+   17     | Expr LE Expr
+   18     | Expr GE Expr
+   19     | Expr NE Expr
+   20     | Expr EQ Expr
+   21     | Expr GT Expr
+   22     | Expr LT Expr
+   23     | Assignment
+
+
+Grammar
+
+    0 $accept: start $end
+
+    1 start: Function
+
+    2 Function: FUNC ID '(' ')' CompoundStmt
+
+    3 CompoundStmt: '{' StmtList '}'
+
+    4 StmtList: StmtList Stmt
+    5         | %empty
+
+    6 Stmt: Forstmt
+    7     | Ifstmt
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'(' (40) 2
+')' (41) 2
+';' (59)
+'<' (60)
+'>' (62)
+'{' (123) 3
+'}' (125) 3
+error (256)
+FOR (258)
+IF (259)
+ELSE (260)
+NUM (261)
+ID (262) 2
+FUNC (263) 2
+Forstmt (264) 6
+Ifstmt (265) 7
+ASOP (266)
+AND (267)
+OR (268)
+LE (269)
+GE (270)
+EQ (271)
+NE (272)
+LT (273)
+GT (274)
+
+
+Nonterminals, with rules where they appear
+
+$accept (27)
+    on left: 0
+start (28)
+    on left: 1, on right: 0
+Function (29)
+    on left: 2, on right: 1
+CompoundStmt (30)
+    on left: 3, on right: 2
+StmtList (31)
+    on left: 4 5, on right: 3 4
+Stmt (32)
+    on left: 6 7, on right: 4
+
+
+State 0
+
+    0 $accept: . start $end
+
+    FUNC  shift, and go to state 1
+
+    start     go to state 2
+    Function  go to state 3
+
+
+State 1
+
+    2 Function: FUNC . ID '(' ')' CompoundStmt
+
+    ID  shift, and go to state 4
+
+
+State 2
+
+    0 $accept: start . $end
+
+    $end  shift, and go to state 5
+
+
+State 3
+
+    1 start: Function .
+
+    $default  reduce using rule 1 (start)
+
+
+State 4
+
+    2 Function: FUNC ID . '(' ')' CompoundStmt
+
+    '('  shift, and go to state 6
+
+
+State 5
+
+    0 $accept: start $end .
+
+    $default  accept
+
+
+State 6
+
+    2 Function: FUNC ID '(' . ')' CompoundStmt
+
+    ')'  shift, and go to state 7
+
+
+State 7
+
+    2 Function: FUNC ID '(' ')' . CompoundStmt
+
+    '{'  shift, and go to state 8
+
+    CompoundStmt  go to state 9
+
+
+State 8
+
+    3 CompoundStmt: '{' . StmtList '}'
+
+    $default  reduce using rule 5 (StmtList)
+
+    StmtList  go to state 10
+
+
+State 9
+
+    2 Function: FUNC ID '(' ')' CompoundStmt .
+
+    $default  reduce using rule 2 (Function)
+
+
+State 10
+
+    3 CompoundStmt: '{' StmtList . '}'
+    4 StmtList: StmtList . Stmt
+
+    Forstmt  shift, and go to state 11
+    Ifstmt   shift, and go to state 12
+    '}'      shift, and go to state 13
+
+    Stmt  go to state 14
+
+
+State 11
+
+    6 Stmt: Forstmt .
+
+    $default  reduce using rule 6 (Stmt)
+
+
+State 12
+
+    7 Stmt: Ifstmt .
+
+    $default  reduce using rule 7 (Stmt)
+
+
+State 13
+
+    3 CompoundStmt: '{' StmtList '}' .
+
+    $default  reduce using rule 3 (CompoundStmt)
+
+
+State 14
+
+    4 StmtList: StmtList Stmt .
+
+    $default  reduce using rule 4 (StmtList)
