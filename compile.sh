@@ -87,3 +87,25 @@ g++ generators/code_generator.cpp
 ./a.out
 
 rm a.out
+
+# ICG- 
+
+# cd ICG_CODE_OPT
+
+yacc -d ICG_CODE_OPT/ICG.y
+lex ICG_CODE_OPT/ICG.l
+gcc -g y.tab.c lex.yy.c -ll -o ICG
+./ICG
+
+cat icg.txt
+
+# CODE_OPT
+
+yacc -d ICG_CODE_OPT/opt.y
+lex ICG_CODE_OPT/opt.l
+gcc -g y.tab.c lex.yy.c -ll -o OPT
+./OPT
+
+cat Optimize.txt
+
+rm ICG y.tab.c y.tab.h OPT lex.yy.c icg.txt Optimize.txt

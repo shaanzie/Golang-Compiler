@@ -272,7 +272,7 @@ assignment_expression
 int main()
 {
 icg = fopen("icg.txt", "w");
-yyin = fopen("test.go","r");
+yyin = fopen("parsed_input.go","r");
 if(!yyparse()){
 
 	printf("\n-----------------------------------\n");
