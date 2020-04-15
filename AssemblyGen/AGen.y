@@ -78,7 +78,7 @@ init_declarator_list
 	;
 
 init_declarator
-	: declarator T_AS_OP conditional_expression {fprintf(icg,"%s := %s\n",$1,$3);}
+	: declarator T_AS_OP conditional_expression {fprintf(icg,"LDR %s, %s\n",$1,$3);}
 	| declarator 
 	;
 
@@ -170,13 +170,13 @@ additive_expression
  	| additive_expression '+' multiplicative_expression {
 															char x[10];
  															strcpy(x,newTemp());
- 															fprintf(icg,"%s := %s + %s\n",x,$1,$3);
+ 															fprintf(icg,"ADD %s, %s, %s\n",x,$1,$3);
  															strcpy($$,x);
  														}
  	| additive_expression '-' multiplicative_expression {
  															char x[10];
  															strcpy(x,newTemp());
- 															fprintf(icg,"%s := %s - %s\n",x,$1,$3);
+ 															fprintf(icg,"SUB %s, %s, %s\n",x,$1,$3);
  															strcpy($$,x);
  														}
  	;
@@ -263,7 +263,7 @@ expression
 
 assignment_expression
 	: conditional_expression 
-	| unary_expression T_AS_OP assignment_expression {fprintf(icg,"%s := %s\n",$1,$3);}
+	| unary_expression T_AS_OP assignment_expression {fprintf(icg,"LDR %s, %s\n",$1,$3);}
 	| unary_expression T_ADD_ASSIGN assignment_expression 
 	| unary_expression T_SUB_ASSIGN assignment_expression 
 	;
@@ -271,7 +271,7 @@ assignment_expression
 
 int main()
 {
-icg = fopen("icg.txt", "w");
+icg = fopen("assembly.txt", "w");
 yyin = fopen("parsed_input.go","r");
 if(!yyparse()){
 

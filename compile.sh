@@ -108,4 +108,13 @@ gcc -g y.tab.c lex.yy.c -ll -o OPT
 
 cat Optimize.txt
 
-rm ICG y.tab.c y.tab.h OPT lex.yy.c icg.txt Optimize.txt
+rm ICG y.tab.c y.tab.h OPT lex.yy.c Optimize.txt
+
+yacc -d AssemblyGen/AGen.y
+lex AssemblyGen/AGen.l
+gcc -g y.tab.c lex.yy.c -ll -o AGen
+./AGen
+
+cat assembly.txt
+
+rm y.tab.c y.tab.h lex.yy.c assembly.txt AGen icg.txt
