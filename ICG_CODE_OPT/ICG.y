@@ -252,7 +252,7 @@ iteration_statement
  	;
 
 
-if_statement : T_IF '(' expression_statement ')' statement 
+if_statement : T_IF '(' expression_statement ')' 		
 	;
 
 

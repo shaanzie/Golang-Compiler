@@ -16,6 +16,7 @@
 	int top1 = 0;
 	int top2 = 0;
 	int stop = 0;
+	int forlabel = 3;
 	char* newTemp();
 	char* newLabel();
 	FILE *icg;
@@ -141,25 +142,37 @@ relational_expression
  	| relational_expression '<' additive_expression 	{		
  															char x[10];
  															strcpy(x,newTemp());
- 															fprintf(icg,"%s := %s < %s\n",x,$1,$3);
+ 															fprintf(icg,"MOV %s, %s - %s\n",x,$1,$3);
+															fprintf(icg,"%d: CMP %s, 0\n", labelc+1, x);
+															labelc += 1;
+															fprintf(icg,"BLT %d\n", labelc+1);
  															strcpy($$,x);
  														}
  	| relational_expression '>' additive_expression 	{
  															char x[10];
  															strcpy(x,newTemp());
- 															fprintf(icg,"%s := %s > %s\n",x,$1,$3);
+ 															fprintf(icg,"MOV %s, %s - %s\n",x,$1,$3);
+															 fprintf(icg,"%d: CMP %s, 0\n", labelc+1, x);
+															 labelc += 1;
+															fprintf(icg,"BGT %d\n", labelc+1);
  															strcpy($$,x);
  														}
  	| relational_expression T_LE_OP additive_expression {	
 															char x[10];
  															strcpy(x,newTemp());
- 															fprintf(icg,"%s := %s <= %s\n",x,$1,$3);
+ 															fprintf(icg,"MOV %s, %s - %s\n",x,$1,$3);
+															 fprintf(icg,"%d: CMP %s, 0\n", labelc+1, x);
+															 labelc += 1;
+															fprintf(icg,"BLE %d\n", labelc+1);
  															strcpy($$,x);
  														}
  	| relational_expression T_GE_OP additive_expression {
  															char x[10];
  															strcpy(x,newTemp());
- 															fprintf(icg,"%s := %s >= %s\n",x,$1,$3);
+ 															fprintf(icg,"MOV %s, %s - %s\n",x,$1,$3);
+															 fprintf(icg,"%d: CMP %s, 0\n", labelc+1, x);
+															 labelc += 1;
+															fprintf(icg,"BGE %d\n", labelc+1);
  															strcpy($$,x);
  														}
  	;
@@ -247,8 +260,10 @@ expression_statement
  	:  expression 
  	;
 iteration_statement
- 	: T_FOR '(' expression_statement  ';' expression_statement ';' expression ')' statement 
-	| T_FOR '(' declaration ';' expression_statement ';' expression ')' statement 
+ 	: T_FOR '(' expression_statement  ';' expression_statement ';' expression ')' statement {
+		 																						fprintf(icg, "B %d\n", forlabel--); 
+																							}
+	| T_FOR '(' declaration ';' expression_statement ';' expression ')' statement {fprintf(icg, "B %d\n", labelc - 1); }
  	;
 
 
