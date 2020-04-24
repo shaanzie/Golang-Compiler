@@ -142,7 +142,9 @@ relational_expression
  	| relational_expression '<' additive_expression 	{		
  															char x[10];
  															strcpy(x,newTemp());
- 															fprintf(icg,"MOV %s, %s - %s\n",x,$1,$3);
+															char* c = "R1";
+															fprintf(icg,"SUB %s, %s, %s\n",c,$1,$3);
+ 															fprintf(icg,"MOV %s, %s\n",x,c);
 															fprintf(icg,"%d: CMP %s, 0\n", labelc+1, x);
 															labelc += 1;
 															fprintf(icg,"BLT %d\n", labelc+1);
@@ -151,7 +153,9 @@ relational_expression
  	| relational_expression '>' additive_expression 	{
  															char x[10];
  															strcpy(x,newTemp());
- 															fprintf(icg,"MOV %s, %s - %s\n",x,$1,$3);
+ 															char* c = "R1";
+															fprintf(icg,"SUB %s, %s, %s\n",c,$1,$3);
+ 															fprintf(icg,"MOV %s, %s\n",x,c);
 															 fprintf(icg,"%d: CMP %s, 0\n", labelc+1, x);
 															 labelc += 1;
 															fprintf(icg,"BGT %d\n", labelc+1);
@@ -160,7 +164,9 @@ relational_expression
  	| relational_expression T_LE_OP additive_expression {	
 															char x[10];
  															strcpy(x,newTemp());
- 															fprintf(icg,"MOV %s, %s - %s\n",x,$1,$3);
+ 															char* c = "R1";
+															fprintf(icg,"SUB %s, %s, %s\n",c,$1,$3);
+ 															fprintf(icg,"MOV %s, %s\n",x,c);
 															 fprintf(icg,"%d: CMP %s, 0\n", labelc+1, x);
 															 labelc += 1;
 															fprintf(icg,"BLE %d\n", labelc+1);
@@ -169,7 +175,9 @@ relational_expression
  	| relational_expression T_GE_OP additive_expression {
  															char x[10];
  															strcpy(x,newTemp());
- 															fprintf(icg,"MOV %s, %s - %s\n",x,$1,$3);
+ 															char* c = "R1";
+															fprintf(icg,"SUB %s, %s, %s\n",c,$1,$3);
+ 															fprintf(icg,"MOV %s, %s\n",x,c);
 															 fprintf(icg,"%d: CMP %s, 0\n", labelc+1, x);
 															 labelc += 1;
 															fprintf(icg,"BGE %d\n", labelc+1);
